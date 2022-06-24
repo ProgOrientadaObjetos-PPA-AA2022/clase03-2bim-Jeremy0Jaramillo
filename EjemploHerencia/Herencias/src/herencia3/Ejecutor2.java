@@ -11,22 +11,31 @@ public class Ejecutor2 {
 
     public static void main(String[] args) {
 
-        ArrayList<EstudiantePresencial> lista = new ArrayList<>();
+        ArrayList<EstudiantePresencial> listaPresencial = new ArrayList<>();
 
         EstudiantePresencial e1 = new EstudiantePresencial("Mario", "Mills",
                 "212233", 23, 1, 100.2, 9.2);
-        
+
         EstudiantePresencial e2 = new EstudiantePresencial("Nancy", "Ayala",
                 "212234", 21, 2, 100.2, 8.2);
-        
+
         EstudiantePresencial e3 = new EstudiantePresencial("Alvaro", "Narvaez",
                 "212235", 19, 3, 100.2, 7.2);
 
-        
+        listaPresencial.add(e1);
+        listaPresencial.add(e2);
+        listaPresencial.add(e3);
+
+        for (int i = 0; i < listaPresencial.size(); i++) {
+            listaPresencial.get(i).calcularMatriculaPresencial();
+        }
 
         ReportePresencial rd = new ReportePresencial("Reporte Presencial",
                 "Alimentos", "Segundo");
-        
+        rd.establecerLista(listaPresencial);
+        rd.establecerTotalMatriculasPresencial();
+        rd.establecerPromedioGeneral();
+
         System.out.println("----------------------");
         System.out.println(rd);
 
@@ -70,4 +79,4 @@ Promedio:  7,20
 
 El total de matriculas es: 601,20
 Promedio General: 8,200
-*/
+ */

@@ -11,53 +11,68 @@ import java.util.ArrayList;
  *
  * @author reroes
  */
-public class ReportePresencial extends Reporte{
-    
+public class ReportePresencial extends Reporte {
+
     private ArrayList<EstudiantePresencial> lista;
     private double totalMatriculaPresencial;
     private double promedioGeneral;
-    
-    public ReportePresencial(String nombre, String carrera, String ciclo){
+
+    public ReportePresencial(String nombre, String carrera, String ciclo) {
         super(nombre, carrera, ciclo);
-        
+
     }
-    
-    public void establecerLista(ArrayList<EstudiantePresencial> listado){
+
+    public void establecerLista(ArrayList<EstudiantePresencial> listado) {
         lista = listado;
     }
-    
-    public void establecerTotalMatriculasPresencial(){
-        
+
+    public void establecerTotalMatriculasPresencial() {
+
         for (int i = 0; i < lista.size(); i++) {
-            totalMatriculaPresencial = totalMatriculaPresencial + 
-                    lista.get(i).obtenerMatriculaPresencial();
+            totalMatriculaPresencial = totalMatriculaPresencial
+                    + lista.get(i).obtenerMatriculaPresencial();
         }
     }
-    
-    public void establecerPromedioGeneral(){
-        
+
+    public void establecerPromedioGeneral() {
+
         for (int i = 0; i < lista.size(); i++) {
-            promedioGeneral = promedioGeneral + 
-                    lista.get(i).obtenerPromedio();
+            promedioGeneral = promedioGeneral
+                    + lista.get(i).obtenerPromedio();
         }
         promedioGeneral = promedioGeneral / lista.size();
     }
-    
-    public ArrayList<EstudiantePresencial> obtenerLista(){
+
+    public ArrayList<EstudiantePresencial> obtenerLista() {
         return lista;
     }
-    
-    public double obtenerTotalMatriculasDistancia(){
+
+    public double obtenerTotalMatriculasDistancia() {
         return totalMatriculaPresencial;
     }
-    
-    public double obtenerPromedioGeneral(){
+
+    public double obtenerPromedioGeneral() {
         return promedioGeneral;
     }
-    
+
     @Override
-    public String toString(){
-        return "";
+    public String toString() {
+        String cadena = String.format("%s\nCarrera: %s \n"
+                + "Ciclo: %s\n\n",
+                nombre,
+                carrera,
+                ciclo);
+
+        cadena = String.format("%sLista de Estudiantes\n\n", cadena);
+
+        for (int i = 0; i < lista.size(); i++) {
+            cadena = String.format("%s%s\n", cadena, lista.get(i));
+        }
+
+        cadena = String.format("%s\nEl total de matrículas es: %.2f\n", cadena, totalMatriculaPresencial);
+
+        cadena = String.format("%sPromedio General: %.2f\n", cadena, promedioGeneral);
+        return cadena;
     }
-    
+
 }
