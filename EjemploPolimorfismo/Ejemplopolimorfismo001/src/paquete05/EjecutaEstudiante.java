@@ -9,12 +9,7 @@ public class EjecutaEstudiante {
 
     public static void main(String[] args) {
 
-        /*
-        Generar un proceso que permita ingresar n número 
-        de docentes. 
-        El usuario decide cuando terminar el proceso.
-        
-        */
+
         Scanner entrada = new Scanner(System.in);
         String nombresEst;
         String apellidosEst;
@@ -26,23 +21,21 @@ public class EjecutaEstudiante {
         int numeroAsigs;
         int tipoEstudiante;
         String continuar;
-        ArrayList<Estudiante> estudiantes = new ArrayList<>();
+        ArrayList<Estudiante> estudiantes = new ArrayList<>();  //Hacemos un Arraylist para objetos Estudiante
         
-        // inicio de solución
+        
+        //Aquí tenemos todo el proceso do while que permitira al usuario añador estudiantes indefinidamente, claro hasta que lo desee  
         do {
-            // Se imprime mensaje en pantalla para solicitar
-            // el tipo de estudiante que se desea ingresar
+
             System.out.println("Tipo de Estudiante a ingresar\n"
                     + "Ingrese (1) para Estudiante Presencial o "
-                    + "Ingrese (2) para Estudiante Distancia");
-            // se captura el valor ingresado por el usuario en 
-            // la variable tipoEstudiante
+                    + "Ingrese (2) para Estudiante Distancia");         //Se elige el tipo de estudiante
+
             tipoEstudiante = entrada.nextInt();
             entrada.nextLine();
-            // Solicitar el ingreso de valores para las variables
 
-            // Solicitar nombresEst, apellidosEst, identificacionEst, edadEst
-            // Leer nombresEst, apellidosEst, identificacionEst, edadEst
+
+            //Se pide los datos que siempre va a obtener cualquier tipo de estudiante
             System.out.println("Ingrese los nombres del estudiante");
             nombresEst = entrada.nextLine();
             System.out.println("Ingrese los apellidos del estudiante");
@@ -52,69 +45,50 @@ public class EjecutaEstudiante {
             System.out.println("Ingrese la edad del estudiante");
             edadEst = entrada.nextInt();
 
-            if (tipoEstudiante == 1) {
+            if (tipoEstudiante == 1) {       //Proceso estudiante presencial
 
-                // Declarar,crear e iniciar objeto tipo EstudiantePresencial
-                EstudiantePresencial estudianteP = new EstudiantePresencial();
-                // Solicitar ingreso de valores para variables 
-                // Solicitar numeroCreds, costoCred
-                // Leer numeroCreds, costoCred
+
+                EstudiantePresencial estudianteP = new EstudiantePresencial();      //Se declara el objeto EstudiantePresencial
+
                 System.out.println("Ingrese el número de créditos");
                 numeroCreds = entrada.nextInt();
                 System.out.println("Ingrese el costo de cada créditos");
                 costoCred = entrada.nextDouble();
-                // se hace uso de los métodos establecer para asignar valores
-                // a los datos (atributos) del objeto
+
                 estudianteP.establecerNombresEstudiante(nombresEst);
                 estudianteP.establecerApellidoEstudiante(apellidosEst);
-                estudianteP.establecerIdentificacionEstudiante(identificacionEst);
+                estudianteP.establecerIdentificacionEstudiante(identificacionEst);          //Se establecen los datos propios de la subclase
                 estudianteP.establecerEdadEstudiante(edadEst);
                 estudianteP.establecerNumeroCreditos(numeroCreds);
                 estudianteP.establecerCostoCredito(costoCred);
 
-                // Luego que se ha ingresado los datos, se hace uso del método
-                // abtracto <calcularMatricula> para obtener 
-                // el costo de la Matricula Presencial para el objeto tipo 
-                // EstudiantePresencial
-                estudianteP.calcularMatricula();
 
-                // se hace uso de los métodos obtener del objeto para presentar
-                // los valores que se necesite en pantalla
-                // Imprimir
-                estudiantes.add(estudianteP);
+                estudianteP.calcularMatricula();        //Se calcula la matricula presencial desde el metodo abstracto de la clase respectiva y con los datos que le acabamos de dar
+
+
+                estudiantes.add(estudianteP);           //Se añade al arrayList el estudiantePresencial ya que es una instancia de la subclase que tiene como superclase a estudiante 
             } else {
-                // Si el usuario ingresa un número igual a 2 para 
-                // tipoEstudiante se procede a crear los procesos necesarios para 
-                // crear un objeto de tipo EstudianteDistancia
+
                 if (tipoEstudiante == 2) {
-                    // Declarar,crear e iniciar objeto tipo EstudianteDistancia
-                    EstudianteDistancia estudianteD = new EstudianteDistancia();
-                    // Solicitar ingreso de valores para variables 
-                    // Solicitar numeroAsigs, costoAsig 
-                    // Leer numeroAsigs, costoAsig
+                    EstudianteDistancia estudianteD = new EstudianteDistancia();    //Se declara el objeto EstudianteDistancia
+
                     System.out.println("Ingrese el número de asignaturas");
                     numeroAsigs = entrada.nextInt();
                     System.out.println("Ingrese el costo de cada cada asignatura");
                     costoAsig = entrada.nextDouble();
 
-                    // se hace uso de los métodos establecer para asignar valores
-                    // a los datos (atributos) del objeto
                     estudianteD.establecerNombresEstudiante(nombresEst);
                     estudianteD.establecerApellidoEstudiante(apellidosEst);
-                    estudianteD.establecerIdentificacionEstudiante(identificacionEst);
+                    estudianteD.establecerIdentificacionEstudiante(identificacionEst);           //Se establecen los datos propios de la subclase
                     estudianteD.establecerEdadEstudiante(edadEst);
                     estudianteD.establecerNumeroAsginaturas(numeroAsigs);
                     estudianteD.establecerCostoAsignatura(costoAsig);
 
-                    // Luego que se ha ingresado los datos, se hace uso del método
-                    // abtracto <calcularMatricula> para obtener 
-                    // el costo de la Matricula Distancia para el objeto tipo 
-                    // EstudianteDistancia
-                    estudianteD.calcularMatricula();
 
-                    // se hace uso de los métodos obtener del objeto para presentar
-                    // los valores que se necesite en pantalla
-                     estudiantes.add(estudianteD);
+                    estudianteD.calcularMatricula();    //Se calcula la matricula a distancia desde el metodo abstracto de la subclase y sus datos con los que estamos trabajando en este caso
+
+
+                     estudiantes.add(estudianteD);  //Se añade la instancia de la subclase que hereda de estudiante
 
                 } else {
                     System.out.println("Opción fuera de rango");
@@ -123,25 +97,20 @@ public class EjecutaEstudiante {
             }
 
             entrada.nextLine();
-            // Se pregunta si se desea ingresar más estudiante
             System.out.println("Desea ingresar más estudiante. Digite la "
                     + "letra S para continuar o digite la letra N para salir "
                     + "del proceso");
 
-            // se captura el valor ingresado por el usuario para la variable 
-            // continuar
-            continuar = entrada.nextLine();
-            // se pregunta si el valor continuar es igual al valor "S", se sigue en 
-            // ciclo repetitivo; si el valor es distinto de "S", se sale del ciclo
-            // repetitivo
-        } while (continuar.equals("S"));
+
+            continuar = entrada.nextLine();  //Se actualiza continuar
+
+        } while (continuar.equals("S"));        //verificamos si debemos seguir en el ciclo
         
         
         
         
-        // ciclo que permite comprobar el polimorfismo
-        // este código no debe ser modificado.
-        for (int i = 0; i < estudiantes.size(); i++) {
+
+        for (int i = 0; i < estudiantes.size(); i++) {      //Imprimimos todos los estudiantes que añadimos sin importar de que tipo son y utilizando sus respectivos toString
             // 1.  
             estudiantes.get(i).calcularMatricula();
             
